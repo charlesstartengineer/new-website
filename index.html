@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERION | Futuristic Aerospace</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>AERION</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="#technology" class="nav-link">Technology</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-auth">
+                <button id="signInBtn" class="btn-secondary">Sign In</button>
+                <button id="signOutBtn" class="btn-secondary" style="display: none;">Sign Out</button>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">REVOLUTIONARY<br>AEROSPACE<br>TECHNOLOGY</h1>
+            <p class="hero-subtitle">Experience the future of flight with AERION's cutting-edge aircraft solutions</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Explore Products</button>
+                <button class="btn-secondary">Watch Demo</button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="aircraft-model">
+                <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="aircraftGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#4a90e2"/>
+                            <stop offset="100%" stop-color="#0066cc"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <!-- Aircraft body -->
+                    <path d="M100,150 L400,150 L420,160 L400,170 L100,170 Z" fill="url(#aircraftGradient)" filter="url(#glow)"/>
+                    <!-- Wings -->
+                    <path d="M120,130 L200,100 L200,150 Z" fill="#64b5f6" filter="url(#glow)"/>
+                    <path d="M300,150 L380,180 L380,130 Z" fill="#64b5f6" filter="url(#glow)"/>
+                    <!-- Tail -->
+                    <path d="M420,150 L440,140 L440,160 Z" fill="#4a90e2" filter="url(#glow)"/>
+                    <!-- Cockpit -->
+                    <circle cx="180" cy="150" r="15" fill="#ffffff" opacity="0.8"/>
+                </svg>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="section-header">
+            <h2 class="section-title">OUR PRODUCTS</h2>
+            <p class="section-subtitle">Innovative aircraft solutions for the future</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card" data-aos="fade-up">
+                <div class="product-image">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="product1Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ff6b6b"/>
+                                <stop offset="100%" stop-color="#ff4757"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M50,150 L350,150 L370,160 L350,170 L50,170 Z" fill="url(#product1Gradient)"/>
+                        <path d="M70,130 L150,100 L150,150 Z" fill="#ff8e8e"/>
+                        <path d="M250,150 L330,180 L330,130 Z" fill="#ff8e8e"/>
+                        <circle cx="130" cy="150" r="10" fill="#ffffff" opacity="0.9"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">AERION 747</h3>
+                    <p class="product-description">Next-generation commercial aircraft with revolutionary fuel efficiency and passenger comfort.</p>
+                    <ul class="product-specs">
+                        <li>Range: 8,000 km</li>
+                        <li>Capacity: 400 passengers</li>
+                        <li>Speed: Mach 0.85</li>
+                    </ul>
+                    <button class="btn-secondary">Learn More</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-aos="fade-up">
+                <div class="product-image">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="product2Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#5f27cd"/>
+                                <stop offset="100%" stop-color="#341f97"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M50,150 L350,150 L370,160 L350,170 L50,170 Z" fill="url(#product2Gradient)"/>
+                        <path d="M70,130 L150,100 L150,150 Z" fill="#8a6de9"/>
+                        <path d="M250,150 L330,180 L330,130 Z" fill="#8a6de9"/>
+                        <circle cx="130" cy="150" r="10" fill="#ffffff" opacity="0.9"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">AERION X-1</h3>
+                    <p class="product-description">Experimental aircraft designed for hypersonic flight and space access.</p>
+                    <ul class="product-specs">
+                        <li>Speed: Mach 5+</li>
+                        <li>Altitude: 40,000m</li>
+                        <li>Range: 2,000 km</li>
+                    </ul>
+                    <button class="btn-secondary">Learn More</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-aos="fade-up">
+                <div class="product-image">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="product3Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00d2d3"/>
+                                <stop offset="100%" stop-color="#009e9f"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M50,150 L350,150 L370,160 L350,170 L50,170 Z" fill="url(#product3Gradient)"/>
+                        <path d="M70,130 L150,100 L150,150 Z" fill="#40e8e9"/>
+                        <path d="M250,150 L330,180 L330,130 Z" fill="#40e8e9"/>
+                        <circle cx="130" cy="150" r="10" fill="#ffffff" opacity="0.9"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">AERION R-2</h3>
+                    <p class="product-description">Recreational aircraft with advanced avionics and sustainable propulsion.</p>
+                    <ul class="product-specs">
+                        <li>Range: 1,500 km</li>
+                        <li>Capacity: 6 passengers</li>
+                        <li>Speed: Mach 0.7</li>
+                    </ul>
+                    <button class="btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="technology">
+        <div class="section-header">
+            <h2 class="section-title">OUR TECHNOLOGY</h2>
+            <p class="section-subtitle">Revolutionary innovations that redefine aerospace engineering</p>
+        </div>
+        <div class="tech-container">
+            <div class="tech-content" data-aos="fade-right">
+                <h3 class="tech-title">Advanced Propulsion Systems</h3>
+                <p class="tech-description">Our proprietary hybrid-electric engines combine efficiency with performance, reducing emissions by 60% while maintaining superior speed and range.</p>
+                <div class="tech-features">
+                    <div class="feature-item">
+                        <h4>Hybrid-Electric</h4>
+                        <p>Combines electric motors with traditional turbines for optimal efficiency</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Carbon Fiber</h4>
+                        <p>Lightweight, durable materials reduce overall aircraft weight</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>AI Navigation</h4>
+                        <p>Advanced AI systems optimize flight paths and fuel consumption</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-visual" data-aos="fade-left">
+                <div class="tech-animation">
+                    <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#4a90e2"/>
+                                <stop offset="100%" stop-color="#0066cc"/>
+                            </linearGradient>
+                            <filter id="techGlow">
+                                <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                                <feMerge> 
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <circle cx="250" cy="150" r="80" fill="none" stroke="url(#techGradient)" stroke-width="3" filter="url(#techGlow)"/>
+                        <circle cx="250" cy="150" r="60" fill="none" stroke="url(#techGradient)" stroke-width="2" stroke-dasharray="10,10" filter="url(#techGlow)"/>
+                        <circle cx="250" cy="150" r="40" fill="none" stroke="url(#techGradient)" stroke-width="1" stroke-dasharray="5,5" filter="url(#techGlow)"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2 class="section-title">ABOUT AERION</h2>
+            <p class="section-subtitle">Pioneering the future of aerospace since 2015</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text" data-aos="fade-right">
+                <h3 class="about-title">Innovating Beyond Limits</h3>
+                <p class="about-description">Founded in 2015, AERION has been at the forefront of aerospace innovation. Our mission is to revolutionize air travel through sustainable technologies and cutting-edge engineering.</p>
+                <p class="about-description">We combine decades of aviation expertise with breakthrough research in propulsion, materials science, and artificial intelligence to create aircraft that push the boundaries of what's possible.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h4>500+</h4>
+                        <p>Aircraft Delivered</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>120+</h4>
+                        <p>Global Partnerships</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>98%</h4>
+                        <p>Customer Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="aboutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#4a90e2"/>
+                            <stop offset="100%" stop-color="#0066cc"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="50" y="50" width="400" height="300" rx="20" fill="url(#aboutGradient)" opacity="0.2"/>
+                    <circle cx="250" cy="200" r="100" fill="#ffffff" opacity="0.1"/>
+                    <path d="M150,150 L350,150 L370,160 L350,170 L150,170 Z" fill="url(#aboutGradient)" opacity="0.8"/>
+                    <path d="M170,130 L250,100 L250,150 Z" fill="#64b5f6" opacity="0.8"/>
+                    <path d="M300,150 L380,180 L380,130 Z" fill="#64b5f6" opacity="0.8"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2 class="section-title">CONTACT US</h2>
+            <p class="section-subtitle">Get in touch to learn more about our aerospace solutions</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info" data-aos="fade-right">
+                <h3 class="contact-title">Reach Out</h3>
+                <p class="contact-description">We're here to answer your questions and help you explore our aerospace solutions.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h4>Headquarters</h4>
+                        <p>123 Aerospace Boulevard, Los Angeles, CA 90001</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p>info@aerion.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form" data-aos="fade-left">
+                <form id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>AERION</h2>
+                <p>Revolutionizing Aerospace Since 2015</p>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#technology">Technology</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="#"><span>Twitter</span></a>
+                <a href="#"><span>LinkedIn</span></a>
+                <a href="#"><span>YouTube</span></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AERION. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
