@@ -305,7 +305,7 @@ async function updateAuthUI() {
     signInBtn.style.display = 'inline-block';
     signOutBtn.style.display = 'none';
     
-    // Remove user profile from nav
+    // Remove user profile if exists
     const userProfile = document.querySelector('.user-profile');
     if (userProfile) {
       userProfile.remove();
@@ -313,7 +313,173 @@ async function updateAuthUI() {
   }
 }
 
-// Check auth state on page load
-window.addEventListener('load', () => {
-  updateAuthUI();
+// Initialize auth UI
+updateAuthUI();
+
+// Add 3D scroll effects for interactive elements
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    
+    // Create 3D effect on navigation items
+    document.querySelectorAll('.nav-link').forEach((link, index) => {
+        const depth = (index * 2);
+        link.style.transform = `translateZ(${depth}px)`;
+    });
+    
+    // Create 3D effect on product cards
+    document.querySelectorAll('.product-card').forEach((card, index) => {
+        const depth = (index * 5);
+        card.style.transform = `translateZ(${depth}px)`;
+    });
+});
+
+// Add interactive 3D hover effects to buttons
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('mousemove', (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateY = ((x - centerX) / 20);
+        const rotateX = -((y - centerY) / 20);
+        
+        button.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        button.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    });
+});
+
+// Add parallax effect to hero background
+document.querySelector('.hero').addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth / 2 - e.pageX) / 25;
+    const y = (window.innerHeight / 2 - e.pageY) / 25;
+    
+    document.querySelector('.hero').style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
+});
+
+// Add scroll-based animations to various elements
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    
+    // Animate hero title with 3D effect
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const tilt = scrollPosition * 0.05;
+        heroTitle.style.transform = `translateY(${scrollPosition * 0.2}px) rotateX(${tilt}deg)`;
+    }
+    
+    // Animate aircraft model with scroll
+    const aircraftModel = document.querySelector('.aircraft-model');
+    if (aircraftModel) {
+        const rotation = scrollPosition * 0.1;
+        aircraftModel.style.transform = `rotateY(${rotation}deg)`;
+    }
+});
+
+// Add animation to sections as they come into view
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+});
+
+// Add CSS for animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    section {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    
+    .aos-animate {
+        animation: fadeInUp 0.8s ease-out forwards !important;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+`;
+document.head.appendChild(style);
+
+// Add more sophisticated 3D effects
+document.addEventListener('DOMContentLoaded', () => {
+    // Add 3D effect to navigation items
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach((link, index) => {
+        link.style.transformStyle = 'preserve-3d';
+        link.style.perspective = '1000px';
+        
+        link.addEventListener('mouseenter', () => {
+            link.style.transform = `translateZ(20px)`;
+        });
+        
+        link.addEventListener('mouseleave', () => {
+            link.style.transform = `translateZ(0px)`;
+        });
+    });
+    
+    // Add 3D effect to buttons
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.style.transformStyle = 'preserve-3d';
+        button.style.perspective = '1000px';
+        
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = `translateZ(10px)`;
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = `translateZ(0px)`;
+        });
+    });
+    
+    // Add 3D effect to hero elements
+    const heroElements = document.querySelectorAll('.hero-title, .hero-subtitle');
+    heroElements.forEach((el, index) => {
+        el.style.transformStyle = 'preserve-3d';
+        el.style.perspective = '1000px';
+        
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateY = ((x - centerX) / 20);
+            const rotateX = -((y - centerY) / 20);
+            
+            el.style.transform = `translateZ(30px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = `translateZ(0px) rotateX(0deg) rotateY(0deg)`;
+        });
+    });
 });
